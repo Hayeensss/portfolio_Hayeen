@@ -1,0 +1,65 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Core Principles
+- **Keep It Simple:** Use functional, clean code. No over-engineering, no classes or OOP patterns.
+- **Functional Components Only:** All components must be written as plain functions in JavaScript.
+- **No TypeScript:** Stick with JavaScript throughout the project.
+- **Modern Stack:** Use Next.js App Router, Tailwind CSS, and ShadCN/UI for styling and layout.
+
+## Tech Stack
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **UI Components:** ShadCN/UI
+- **Language:** JavaScript (no TypeScript)
+
+## Project Structure
+- **App Directory (`/app`)**
+  - Use nested folders for routes and layout.
+  - Use server components by default. Mark client components explicitly with `"use client"`.
+
+- **Components**
+  - `components/ui/` – for reused ShadCN-based or Tailwind-styled UI atoms.
+  - `components/sections/` – for larger page sections like Hero, About, Projects, etc.
+  - `components/common/` – for shared logic components (e.g., navigation bar, footer).
+
+- **Hooks**
+  - `hooks/` – for any custom React hooks (client-side only).
+
+- **Lib**
+  - `lib/` – for any helper functions (e.g., date formatting, string sanitizing, etc.).
+
+## Styling
+- **Tailwind CSS:** 
+  - Use utility-first approach.
+  - Prefer component-based styles over global CSS.
+- **ShadCN/UI:**
+  - Use ShadCN components when applicable.
+  - Extend or compose them using Tailwind rather than creating deeply nested custom components.
+
+## Components Guidelines
+- All components must be:
+  - Plain functions (`function ComponentName() { ... }` or arrow functions).
+  - Split based on responsibility (one component = one responsibility).
+  - Named clearly and consistently.
+- Avoid props drilling—use context only when necessary.
+- Co-locate styles and logic relevant to a component with the component itself.
+
+## Configuration
+- **Environment Variables:** Store relevant metadata (site title, social URLs, etc.) in `.env.local` if needed.
+- **Content:** Hardcoded JSON or markdown is okay for simple content; avoid adding CMS unless necessary.
+
+## Dev Workflow Enhancement
+- **Port Management:** On every start of the app (e.g. via `npm run dev` or `bun dev`), check if the default port `3000` is occupied. If occupied, automatically kill the process using it before starting the server.  
+
+## Best Practices
+- **No OOP:** Don’t use classes, `new`, or prototypes.
+- **No TypeScript:** Use JS only—no type annotations or TS tooling.
+- **Reusability:** Extract repeated UI into `components/ui/`.
+- **Accessibility:** Always consider accessibility in components (e.g., alt tags, roles, ARIA attributes).
+- **Performance:** Use server components for static sections and avoid unnecessary hydration.
+
+## Summary
+This portfolio project should showcase clean, modern, functional frontend work using Next.js, Tailwind, and ShadCN/UI with JavaScript. It must remain simple, readable, and efficient—built for speed and clarity.

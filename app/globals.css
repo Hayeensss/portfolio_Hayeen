@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    /* Card styles */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    /* Popover styles */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    /* Primary colors - Updated to #b08047 */
+    --primary: 35 45% 48%;
+    --primary-foreground: 35 45% 98%;
+
+    /* Secondary colors - Mint */
+    --secondary: 165 65% 85%;
+    --secondary-foreground: 165 70% 15%;
+
+    /* Muted colors */
+    --muted: 10 20% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    /* Accent colors - Soft Lavender */
+    --accent: 280 50% 90%;
+    --accent-foreground: 280 50% 15%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Border and input */
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 35 45% 48%;
+
+    /* Chart colors - Pastel palette */
+    --chart-1: 35 45% 48%; /* Updated to match primary */
+    --chart-2: 165 65% 75%; /* Mint */
+    --chart-3: 280 50% 80%; /* Lavender */
+    --chart-4: 200 65% 85%; /* Soft Blue */
+    --chart-5: 340 60% 85%; /* Soft Pink */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Base colors */
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Card styles */
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    /* Popover styles */
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary colors - Deep Peach */
+    --primary: 24 50% 40%;
+    --primary-foreground: 24 80% 95%;
+
+    /* Secondary colors - Deep Mint */
+    --secondary: 165 40% 30%;
+    --secondary-foreground: 165 80% 95%;
+
+    /* Muted colors */
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    /* Accent colors - Deep Lavender */
+    --accent: 280 30% 35%;
+    --accent-foreground: 280 80% 95%;
+
+    /* Destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Border and input */
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+
+    /* Chart colors - Dark pastel palette */
+    --chart-1: 24 50% 45%; /* Dark Peach */
+    --chart-2: 165 40% 40%; /* Dark Mint */
+    --chart-3: 280 30% 45%; /* Dark Lavender */
+    --chart-4: 200 30% 40%; /* Dark Blue */
+    --chart-5: 340 40% 45%; /* Dark Pink */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Apply custom font size to elements using the .font-heading class */
+.font-heading {
+  font-size: clamp(2.2rem, 1.5rem + 2.5vw, 4rem);
+}
