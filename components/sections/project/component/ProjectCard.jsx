@@ -20,11 +20,13 @@ export default function ProjectCard({ project }) {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <ProjectImageGallery
-        projectImages={project.images}
-        projectTitle={project.title}
-        isHovered={isHovered}
-      />
+      {project.images.length > 0 && (
+        <ProjectImageGallery
+          projectImages={project.images}
+          projectTitle={project.title}
+          isHovered={isHovered}
+        />
+      )}
 
       <div className="flex flex-col flex-grow">
         <div className="flex-grow">

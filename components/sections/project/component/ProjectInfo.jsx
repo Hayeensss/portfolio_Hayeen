@@ -9,10 +9,10 @@ function TechnologyBadge({ tech }) {
 export default function ProjectInfo({ title, description, technologies }) {
   return (
     <div className="p-6">
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 truncate">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
         {description}
       </p>
 
