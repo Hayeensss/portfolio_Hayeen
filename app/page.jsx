@@ -10,10 +10,12 @@ export default function Home() {
     <main id="main-content">
       <Hero />
       <Projects />
-      <About />
       <div className="site-shell background-grid">
-        <Skills />
-        <Education />
+        <About />
+        <div className="background-details">
+          <Education />
+          <Skills />
+        </div>
       </div>
       <Contact />
     </main>
