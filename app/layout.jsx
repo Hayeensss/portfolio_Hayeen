@@ -21,9 +21,9 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "Hanyu Xue - Software Developer Portfolio",
+  title: "Hayeen (Hanyu Xue) - Junior Software Developer",
   description:
-    "Professional portfolio of Hanyu Xue, a software developer specializing in React, NextJS, and full-stack development.",
+    "Perth-based UWA IT graduate seeking junior software development roles. Explore Smart Doorbell and Portfolio projects using React, Next.js and PostgreSQL.",
   authors: [{ name: "Hanyu Xue", url: "https://github.com/Hayeensss" }],
 };
 
