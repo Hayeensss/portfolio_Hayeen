@@ -22,9 +22,9 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto text-center text-sm md:text-base"
         >
-          Explore my portfolio of projects showcasing my skills in web
-          development, from responsive front-end designs to complex back-end
-          systems.
+          Two web projects, with Smart Doorbell shown as its web application and
+          notification component. Follow the repository links to explore
+          the implementation and project notes.
         </motion.p>
 
         <ProjectGrid projects={projectsData} />
