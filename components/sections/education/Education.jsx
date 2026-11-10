@@ -4,11 +4,12 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="compact-section"
+      className="education-section"
       aria-labelledby="education-heading"
     >
-      <p className="eyebrow">Education / 04</p>
-      <h2 id="education-heading">A foundation in IT.</h2>
+      <h2 id="education-heading" className="section-caption">
+        Education
+      </h2>
       <ol className="education-list">
         {educationData.map((item) => (
           <li key={item.degree}>
@@ -17,7 +18,6 @@ export default function Education() {
             <a href={item.url} target="_blank" rel="noopener noreferrer">
               {item.institution}
             </a>
-            <p className="education-location">{item.location}</p>
           </li>
         ))}
       </ol>
