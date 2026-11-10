@@ -13,12 +13,13 @@ export default function HeroContent() {
         Hi, I&apos;m Hayeen.
         <br />
         <span className="text-3xl md:text-4xl lg:text-5xl text-gray-600 dark:text-gray-300">
-          A Full-stack Developer.
+          Junior Software Developer.
         </span>
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 max-w-md">
-        I&apos;m a full-stack developer with a keen eye for creating engaging
-        UI, bringing products to life.
+        Perth-based UWA IT graduate seeking a junior development role.
+        I build web projects with React, Next.js and PostgreSQL, alongside
+        my current work as a Procurement Coordinator.
       </p>
     </motion.div>
   );

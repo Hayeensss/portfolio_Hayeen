@@ -1,51 +1,13 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Image from "next/image";
-
 export default function HeroImage() {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      className="relative aspect-square w-4/5 mx-auto md:w-full md:mx-0"
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="absolute -top-8 -left-8 w-16 h-16 rounded-lg bg-gradient-to-br from-purple-200 to-purple-100 dark:from-indigo-900/30 dark:to-purple-800/30"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="absolute -top-8 -right-8 w-16 h-16 rounded-lg bg-gradient-to-br from-yellow-100 to-pink-100 dark:from-yellow-900/30 dark:to-blue-900/30"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="absolute -bottom-8 -left-8 w-16 h-16 rounded-lg bg-gradient-to-br from-pink-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="absolute -bottom-8 -right-8 w-16 h-16 rounded-lg bg-gradient-to-br from-teal-200 to-teal-100 dark:from-teal-900/30 dark:to-blue-800/30"
-      />
-
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800/50 dark:to-gray-900/50 rounded-3xl transform rotate-6"></div>
-      <div className="relative aspect-square rounded-3xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-xl">
-        <Image
-          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-          alt="美美哒照片放这放这"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-    </motion.div>
+    <div className="rounded-3xl border border-[#b08047]/40 dark:border-[#38BDF8]/30 bg-white dark:bg-gray-900 p-8 md:p-10">
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Hayeen (Hanyu Xue)</p>
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">Web projects.<br />Business experience.</h2>
+      <dl className="space-y-5 text-gray-700 dark:text-gray-300">
+        <div><dt className="font-semibold">Education</dt><dd>Master of Information Technology, UWA</dd></div>
+        <div><dt className="font-semibold">Projects</dt><dd>Smart Doorbell System and Portfolio Website</dd></div>
+        <div><dt className="font-semibold">Current role</dt><dd>Procurement Coordinator, Eco Sakura Energy</dd></div>
+      </dl>
+    </div>
   );
 }
