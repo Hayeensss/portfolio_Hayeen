@@ -1,116 +1,123 @@
 "use client";
 
-import { navigationLinks } from "@/lib/data";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import NavList from "./component/NavList";
+import ThemeToggle from "@/components/theme/ThemeToggle";
+import { navigationLinks } from "@/lib/data";
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [_tabStyle, setTabStyle] = useState({
-    left: 0,
-    width: 0,
-    height: 0,
-    visible: false,
-  });
-  const navRef = useRef(null);
-  const itemRefs = useRef([]);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const menuButton = useRef(null);
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    const update = () => {
       if (
-        isMenuOpen &&
-        navRef.current &&
-        !navRef.current.contains(event.target)
+        window.scrollY > 0 &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 2
       ) {
-        setIsMenuOpen(false);
+        setActive("#contact");
+        return;
       }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      const sections = navigationLinks.map((link) => link.href.substring(1));
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      const passed = navigationLinks.filter(({ href }) => {
+        const section = document.getElementById(href.slice(1));
+        return section && section.getBoundingClientRect().top <= 150;
+      });
+      setActive(passed.at(-1)?.href || "");
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   useEffect(() => {
-    if (activeSection && itemRefs.current.length > 0) {
-      const activeIndex = navigationLinks.findIndex(
-        (link) => link.href.substring(1) === activeSection
-      );
-      if (activeIndex >= 0 && itemRefs.current[activeIndex]) {
-        const itemRect = itemRefs.current[activeIndex].getBoundingClientRect();
-        const navRect = navRef.current.getBoundingClientRect();
-
-        setTabStyle({
-          left: itemRect.left - navRect.left,
-          width: itemRect.width,
-          height: itemRect.height,
-          visible: true,
-        });
+    const onEscape = (event) => {
+      if (event.key === "Escape" && open) {
+        setOpen(false);
+        menuButton.current?.focus();
       }
-    } else {
-      setTabStyle((prev) => ({ ...prev, visible: false }));
-    }
-  }, [activeSection, scrolled]);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
     };
-  }, [isMenuOpen]);
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    document.addEventListener("keydown", onEscape);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.removeEventListener("keydown", onEscape);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [open]);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed w-full top-12 sm:top-5 z-50 transition-all duration-300 px-4"
-    >
-      <nav
-        ref={navRef}
-        className="flex justify-center items-center relative max-w-[1200px] mx-auto"
-      >
-        <NavList
-          activeSection={activeSection}
-          itemRefs={itemRefs}
-          scrolled={scrolled}
-          pathname={pathname}
-        />
+    <header className="site-header">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <nav className="site-shell nav-bar" aria-label="Main navigation">
+        <Link href="/#hero" className="wordmark" onClick={() => setOpen(false)}>
+          Hayeen<span>.</span>
+        </Link>
+        <div className="nav-desktop">
+          {navigationLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="nav-link"
+              aria-current={active === href ? "location" : undefined}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <div className="nav-actions">
+          <a
+            className="nav-cv"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CV <ArrowUpRight size={14} aria-hidden="true" />
+          </a>
+          <ThemeToggle />
+          <button
+            ref={menuButton}
+            className="icon-button menu-toggle"
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? (
+              <X size={20} aria-hidden="true" />
+            ) : (
+              <Menu size={20} aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </nav>
-    </motion.header>
+      {open && (
+        <nav
+          id="mobile-navigation"
+          className="mobile-navigation site-shell"
+          aria-label="Mobile navigation"
+        >
+          {navigationLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              aria-current={active === href ? "location" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
   );
 }
