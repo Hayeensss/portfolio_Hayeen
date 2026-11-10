@@ -1,69 +1,81 @@
 "use client";
 
-import SectionHeading from "@/components/layout/SectionHeading";
-import SectionNavigation from "@/components/layout/SectionNavigation";
+import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { contactData } from "@/lib/data";
-import { motion } from "framer-motion";
-
-import ContactForm from "./component/ContactForm";
-import ContactInfoList from "./component/ContactInfoList";
-import SocialLinks from "./component/SocialLinks";
-import WorkTogetherCallout from "./component/WorkTogetherCallout";
 
 export default function Contact() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
+  const [status, setStatus] = useState("");
+  const timer = useRef(null);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const copyEmail = async () => {
+    clearTimeout(timer.current);
+    try {
+      await navigator.clipboard.writeText(contactData.email);
+      setStatus("Email copied");
+    } catch {
+      setStatus("Could not copy. Select the email address or use Email me.");
+    }
+    timer.current = setTimeout(() => setStatus(""), 5000);
   };
-
   return (
     <section
       id="contact"
-      className="py-16 md:py-20 bg-white dark:bg-gradient-to-b dark:from-[#0F172A] dark:to-[#1E293B] relative"
+      className="site-shell contact-section"
+      aria-labelledby="contact-heading"
     >
-      <div className="container mx-auto px-4">
-        <SectionHeading>GET IN TOUCH</SectionHeading>
-
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <ContactForm introText={contactData.intro} />
-          </motion.div>
-
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col justify-between"
-          >
-            <div>
-              <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
-                Contact Information
-              </h3>
-              <ContactInfoList
-                email={contactData.email}
-                address={contactData.address}
-              />
-            </div>
-
-            <SocialLinks links={contactData.socialLinks} />
-
-            <WorkTogetherCallout />
-          </motion.div>
-        </div>
+      <div>
+        <p className="eyebrow">Get in touch / 05</p>
+        <h2 id="contact-heading">
+          Let’s talk
+          <br />
+          about the next step.
+        </h2>
+        <p className="contact-intro">
+          Seeking a Junior Software Developer role in Perth.
+          <br />
+          I’d be happy to discuss an opportunity or my project work.
+        </p>
       </div>
-
-      <SectionNavigation currentSectionId="contact" />
+      <div className="contact-details">
+        <span className="small-label">Say hello</span>
+        <a className="email-address" href={`mailto:${contactData.email}`}>
+          {contactData.email}
+        </a>
+        <div className="button-row">
+          <a
+            className="site-button primary"
+            href={`mailto:${contactData.email}`}
+          >
+            <Mail size={16} aria-hidden="true" />
+            Email me
+          </a>
+          <button
+            className="site-button secondary"
+            type="button"
+            onClick={copyEmail}
+          >
+            {status === "Email copied" ? (
+              <Check size={16} aria-hidden="true" />
+            ) : (
+              <Copy size={16} aria-hidden="true" />
+            )}
+            Copy email
+          </button>
+        </div>
+        <p className="copy-status" role="status">
+          {status}
+        </p>
+        <a
+          className="text-link"
+          href="https://github.com/Hayeensss"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Find me on GitHub
+          <ArrowUpRight size={15} aria-hidden="true" />
+        </a>
+      </div>
     </section>
   );
 }

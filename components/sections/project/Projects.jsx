@@ -1,47 +1,137 @@
-"use client";
-
-import SectionHeading from "@/components/layout/SectionHeading";
-import SectionNavigation from "@/components/layout/SectionNavigation";
+import {
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  Bell,
+  Database,
+  Layout,
+  Code2,
+} from "lucide-react";
 import { projectsData } from "@/lib/data";
-import { motion } from "framer-motion";
-import ProjectGrid from "./component/ProjectGrid";
 
 export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-16 md:py-20 bg-white dark:bg-gradient-to-b dark:from-[#1E293B] dark:to-[#0F172A] relative"
+      className="site-shell section-block work-section"
+      aria-labelledby="work-heading"
     >
-      <div className="container mx-auto px-4">
-        <SectionHeading>PROJECTS</SectionHeading>
-
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto text-center text-sm md:text-base"
-        >
-          Two web projects, with Smart Doorbell shown as its web application and
-          notification component. Follow the repository links to explore
-          the implementation and project notes.
-        </motion.p>
-
-        <ProjectGrid projects={projectsData} />
-
-        {projectsData.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-10 text-gray-600 dark:text-gray-400"
-          >
-            <p>No projects found.</p>
-          </motion.div>
-        )}
+      <div className="section-heading-row">
+        <div>
+          <p className="eyebrow">Selected work / 01</p>
+          <h2 id="work-heading">Ideas into working parts.</h2>
+        </div>
+        <p className="section-lead">
+          Two web projects. A closer look at the problems, the implementation
+          and my contribution.
+        </p>
       </div>
-
-      <SectionNavigation currentSectionId="projects" />
+      {projectsData.map((project, index) => (
+        <article
+          key={project.title}
+          className={`project-row project-${project.id}`}
+          aria-labelledby={`project-${project.id}`}
+        >
+          <div className="project-copy">
+            <p className="project-meta">
+              0{index + 1} <span>Personal project</span>
+            </p>
+            <h3 id={`project-${project.id}`}>{project.title}</h3>
+            <p className="project-description">{project.description}</p>
+            <h4 className="small-label">My contribution</h4>
+            <ul className="contribution-list">
+              {project.contributions.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="project-stack">{project.technologies.join(" · ")}</p>
+            <div className="project-source-links">
+              {project.links.map((link) => (
+                <a
+                  className="text-link"
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <figure className="implementation-figure">
+            <figcaption>
+              <span className="small-label">Implementation overview</span>
+              <span className="figure-index">0{index + 1}</span>
+            </figcaption>
+            {project.id === "doorbell" ? (
+              <>
+                <div className="flow-stage">
+                  <Layout size={21} aria-hidden="true" />
+                  <div>
+                    <strong>Event history</strong>
+                    <span>React interface & filters</span>
+                  </div>
+                </div>
+                <div className="flow-connector">
+                  <ArrowDown size={16} aria-hidden="true" />
+                  <span>Server-side query</span>
+                </div>
+                <div className="flow-stage">
+                  <Database size={21} aria-hidden="true" />
+                  <div>
+                    <strong>PostgreSQL</strong>
+                    <span>Devices, owners & events</span>
+                  </div>
+                </div>
+                <div className="flow-connector">
+                  <ArrowDown size={16} aria-hidden="true" />
+                  <span>Pending-event processing</span>
+                </div>
+                <div className="flow-stage">
+                  <Bell size={21} aria-hidden="true" />
+                  <div>
+                    <strong>Notification worker</strong>
+                    <span>Clerk lookup → Resend email</span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="portfolio-outline">
+                  <div className="outline-nav">
+                    <span className="outline-brand">Hayeen.</span>
+                    <span>Work / About / Contact</span>
+                  </div>
+                  <div className="outline-heading">
+                    A place for
+                    <br />
+                    the work.
+                  </div>
+                  <div className="outline-lines">
+                    <span />
+                    <span />
+                  </div>
+                  <div className="outline-projects">
+                    <Code2 size={25} aria-hidden="true" />
+                    <ArrowRight size={22} aria-hidden="true" />
+                    <Layout size={25} aria-hidden="true" />
+                  </div>
+                </div>
+                <p className="figure-note">
+                  Project data → React components → responsive pages
+                </p>
+              </>
+            )}
+            {project.id === "doorbell" && (
+              <p className="figure-note">
+                Web application + companion notification worker
+              </p>
+            )}
+          </figure>
+        </article>
+      ))}
     </section>
   );
 }

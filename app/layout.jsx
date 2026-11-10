@@ -1,9 +1,6 @@
-import BackToTopButton from "@/components/layout/BackToTopButton";
-import CircadianClock from "@/components/layout/CircadianClock";
 import Footer from "@/components/layout/footer/Footer";
 import Navbar from "@/components/layout/navbar/Navbar";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Toaster } from "@/components/ui/toaster";
 import { Inter } from "next/font/google";
 import { acorn } from "./fonts";
 import "./globals.css";
@@ -17,10 +14,11 @@ const inter = Inter({
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export const metadata = {
+  metadataBase: new URL("https://hayeenxue.com"),
+  alternates: { canonical: "/" },
   title: "Hayeen (Hanyu Xue) - Junior Software Developer",
   description:
     "Perth-based UWA IT graduate seeking junior software development roles. Explore Smart Doorbell and Portfolio projects using React, Next.js and PostgreSQL.",
@@ -38,12 +36,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <Navbar />
           {children}
-          <div className="hidden sm:block">
-            <CircadianClock />
-          </div>
           <Footer />
-          <BackToTopButton />
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>

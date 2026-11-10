@@ -2,14 +2,15 @@
 
 A personal website for Hayeen (Hanyu Xue), a Perth-based UWA Master of Information Technology graduate seeking Junior Software Developer roles.
 
-[Website](https://portfolio-hayeen.vercel.app) · [GitHub profile](https://github.com/Hayeensss)
+[Website](https://hayeenxue.com) · [GitHub profile](https://github.com/Hayeensss)
 
 ## Purpose and contribution
 
 The site presents my education, web projects and current Procurement Coordinator experience. It is built with Next.js, React and Tailwind CSS.
 
 - Reusable project cards render entries from [lib/data.js](lib/data.js).
-- The contact form uses a server action with Zod validation and a Resend integration in [app/actions/send.js](app/actions/send.js).
+- The current contact section offers direct email, copying the email address and a GitHub link. It does not submit a contact form.
+- A previous contact-form action with Zod validation and a Resend integration remains in [app/actions/send.js](app/actions/send.js) as historical project work; it is not called by the current contact section.
 - The downloadable CV is served from `public/resume.pdf` and should match the maintained software CV.
 
 ## Selected work
@@ -27,7 +28,11 @@ npm run dev
 
 For a production build, run `npm run build` and then `npm start`.
 
-The contact form requires your own `RESEND_API_KEY`, `RESEND_FROM_EMAIL` and `RESEND_TO_EMAIL`. Use an authorised sender and a test recipient for development. Never commit credentials. Contact-form delivery is separate from the public portfolio content and is not implied by a successful site build.
+The current public pages and direct-email contact section do not require email-service configuration. The historical contact-form action is not exposed by this UI. Never commit credentials.
+
+## Interface
+
+Project-first single-page layout with the original Acorn and Inter fonts, warm-brown light theme and navy/sky-blue dark theme. The header contains Work, About, Contact, CV and a theme switch; the mobile menu supports Escape and closes after navigation. Theme preference follows the system until explicitly changed. Contact links open the visitor’s email app; copying the address shows an inline result. Reduced-motion preferences are respected, and content is rendered without scroll-reveal dependencies.
 
 ## Content maintenance
 
