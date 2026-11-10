@@ -4,7 +4,7 @@ import ThemeToggle from "@/components/theme/ThemeToggle";
 import { contactData } from "@/lib/data";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub } from "react-icons/fa";
 
 export default function FooterSocialLinks() {
   return (
@@ -26,6 +26,7 @@ export default function FooterSocialLinks() {
             ?.url || "https://github.com/"
         }
         target="_blank"
+        aria-label="GitHub profile"
         className="rounded-full w-12 h-12 border-2 border-[#b08047] dark:border-[#38BDF8]/30 hover:border-[#b08047] dark:hover:border-[#38BDF8] hover:bg-[#b08047]/10 dark:hover:bg-[#38BDF8]/20 flex items-center justify-center transition-all duration-300"
       >
         <FaGithub
@@ -35,21 +36,8 @@ export default function FooterSocialLinks() {
       </Link>
 
       <Link
-        href={
-          contactData.socialLinks.find((link) => link.platform === "linkedin")
-            ?.url || "https://linkedin.com/"
-        }
-        target="_blank"
-        className="rounded-full w-12 h-12 border-2 border-[#b08047] dark:border-[#38BDF8]/30 hover:border-[#b08047] dark:hover:border-[#38BDF8] hover:bg-[#b08047]/10 dark:hover:bg-[#38BDF8]/20 flex items-center justify-center transition-all duration-300"
-      >
-        <FaLinkedin
-          size={20}
-          className="w-5 h-5 text-[#b08047] dark:text-[#38BDF8]"
-        />
-      </Link>
-
-      <Link
         href={`mailto:${contactData.email}`}
+        aria-label="Email Hayeen"
         className="rounded-full w-12 h-12 border-2 border-[#b08047] dark:border-[#38BDF8]/30 hover:border-[#b08047] dark:hover:border-[#38BDF8] hover:bg-[#b08047]/10 dark:hover:bg-[#38BDF8]/20 flex items-center justify-center transition-all duration-300"
       >
         <FaEnvelope
