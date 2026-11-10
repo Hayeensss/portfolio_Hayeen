@@ -4,12 +4,12 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="compact-section"
+      className="skills-section"
       aria-labelledby="skills-heading"
     >
-      <p className="eyebrow">Toolkit / 03</p>
-      <h2 id="skills-heading">What I build with.</h2>
-      <p className="section-intro">Technologies used across my web projects.</p>
+      <h2 id="skills-heading" className="section-caption">
+        Tools I work with
+      </h2>
       <dl className="skills-list">
         {skillsData.map((skill) => (
           <div key={skill.id}>
