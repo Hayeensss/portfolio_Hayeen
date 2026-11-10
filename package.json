@@ -2,7 +2,7 @@
   "name": "hayeen-portfolio",
   "version": "0.1.0",
   "description": "A personal portfolio website built to showcase projects and skills using Next.js, Tailwind CSS, and Shadcn/UI.",
-  "author": "Hanyue Xue",
+  "author": "Hanyu Xue",
   "private": true,
   "scripts": {
     "dev": "next dev",

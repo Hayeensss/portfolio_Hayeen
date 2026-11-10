@@ -1,59 +1,34 @@
-## Overview
+# Hayeen's Portfolio
 
-This is a personal portfolio website built to showcase projects and skills. It's designed with a focus on clean code, simplicity, and modern web technologies.
+A personal website for Hayeen (Hanyu Xue), a Perth-based UWA Master of Information Technology graduate seeking Junior Software Developer roles.
 
-## Tech Stack
+[Website](https://portfolio-hayeen.vercel.app) · [GitHub profile](https://github.com/Hayeensss)
 
-- ⚛️ **Framework:** Next.js (App Router)
-- 📜 **Language:** JavaScript
-- 🎨 **Styling:** Tailwind CSS
-- 🧩 **UI Components:** Shadcn/UI
-- ✨ **Core Principles:** Functional components, Server Components first, Clean Code (DRY, Single Responsibility, etc.)
+## Purpose and contribution
 
-## Highlights
+The site presents my education, web projects and current Procurement Coordinator experience. It is built with Next.js, React and Tailwind CSS.
 
-- **Modern Stack:** Leverages the latest features of Next.js and React.
-- **Performance:** Optimized for speed using Server Components where possible.
-- **SEO Ready:** Automatically generates `sitemap.xml` and `robots.txt` on build.
-- **Developer Experience:** Simple setup and clear project structure.
+- Reusable project cards render entries from [lib/data.js](lib/data.js).
+- The contact form uses a server action with Zod validation and a Resend integration in [app/actions/send.js](app/actions/send.js).
+- The downloadable CV is served from `public/resume.pdf` and should match the maintained software CV.
 
-## Getting Started
+## Selected work
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    cd <repository-name>
-    ```
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    # or
-    bun install
-    ```
-3.  **Set up environment variables:**
-    Copy `.env.example` to `.env.local` and fill in any required values.
-4.  **Run the development server:**
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) with your browser.
+- [Smart Doorbell web application](https://github.com/Hayeensss/Smart_Doorbell)
+- [Smart Doorbell notification worker](https://github.com/Hayeensss/SmartDoorbell_Notification)
+- This portfolio website
 
-## Project Structure
+## Run locally
 
-- `/app`: Contains all routes, pages, and layouts (using Next.js App Router).
-- `/components/ui`: Reusable UI elements based on Shadcn/UI or custom Tailwind styles.
-- `/components/sections`: Larger page sections (e.g., Hero, About).
-- `/components/common`: Shared components like Navbar, Footer.
-- `/lib`: Utility functions.
-- `/public`: Static assets, including the generated `sitemap.xml` and `robots.txt`.
-- `next-sitemap.config.js`: Configuration for sitemap generation.
+```bash
+npm ci
+npm run dev
+```
+
+For a production build, run `npm run build` and then `npm start`.
+
+The contact form requires your own `RESEND_API_KEY`, `RESEND_FROM_EMAIL` and `RESEND_TO_EMAIL`. Use an authorised sender and a test recipient for development. Never commit credentials. Contact-form delivery is separate from the public portfolio content and is not implied by a successful site build.
+
+## Content maintenance
+
+Keep the website, GitHub introduction and CV consistent. List actual projects with source links, preserve accurate education dates, and do not substitute stock project descriptions or placeholder demos. Personal projects are separate from commercial employment. A listed integration describes source implementation, not an assurance that its external service is currently operating.
