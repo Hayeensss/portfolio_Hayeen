@@ -25,20 +25,16 @@ export default function Contact() {
       aria-labelledby="contact-heading"
     >
       <div>
-        <p className="eyebrow">Get in touch / 05</p>
+        <p className="eyebrow">Have something in mind?</p>
         <h2 id="contact-heading">
-          Let’s talk
-          <br />
-          about the next step.
+          Let’s talk<span className="accent-text">.</span>
         </h2>
         <p className="contact-intro">
-          Seeking a Junior Software Developer role in Perth.
-          <br />
-          I’d be happy to discuss an opportunity or my project work.
+          I’d love to hear about a development opportunity or talk through my
+          work.
         </p>
       </div>
       <div className="contact-details">
-        <span className="small-label">Say hello</span>
         <a className="email-address" href={`mailto:${contactData.email}`}>
           {contactData.email}
         </a>
