@@ -1,137 +1,144 @@
-import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
-  Bell,
-  Database,
-  Layout,
-  Code2,
-} from "lucide-react";
+import { ArrowUpRight, Database, SlidersHorizontal, Mail } from "lucide-react";
 import { projectsData } from "@/lib/data";
 
+function SourceLinks({ links }) {
+  return (
+    <div className="project-source-links">
+      {links.map((link) => (
+        <a
+          className="text-link"
+          key={link.url}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {link.label}
+          <ArrowUpRight size={15} aria-hidden="true" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function Projects() {
+  const [doorbell, portfolio] = projectsData;
   return (
     <section
       id="projects"
-      className="site-shell section-block work-section"
+      className="site-shell work-section"
       aria-labelledby="work-heading"
     >
-      <div className="section-heading-row">
-        <div>
-          <p className="eyebrow">Selected work / 01</p>
-          <h2 id="work-heading">Ideas into working parts.</h2>
-        </div>
-        <p className="section-lead">
-          Two web projects. A closer look at the problems, the implementation
-          and my contribution.
-        </p>
-      </div>
-      {projectsData.map((project, index) => (
-        <article
-          key={project.title}
-          className={`project-row project-${project.id}`}
-          aria-labelledby={`project-${project.id}`}
-        >
-          <div className="project-copy">
-            <p className="project-meta">
-              0{index + 1} <span>Personal project</span>
+      <h2 id="work-heading" className="section-caption">
+        Selected work
+      </h2>
+      <article className="featured-project" aria-labelledby="project-doorbell">
+        <header className="project-heading">
+          <div>
+            <p className="project-kicker">
+              Web application & notification service
             </p>
-            <h3 id={`project-${project.id}`}>{project.title}</h3>
-            <p className="project-description">{project.description}</p>
+            <h3 id="project-doorbell">
+              Smart Doorbell<span className="accent-text">.</span>
+            </h3>
+          </div>
+          <p className="project-deck">
+            Find the event that matters.
+            <br />
+            Reach the owner it belongs to.
+          </p>
+        </header>
+        <figure className="doorbell-map">
+          <figcaption className="map-caption">
+            How the system connects
+          </figcaption>
+          <div className="device-drawing" aria-hidden="true">
+            <svg viewBox="0 0 200 280" fill="none">
+              <path
+                className="signal-line"
+                d="M154 58c15 12 24 30 24 51M164 36c24 17 38 44 38 73"
+              />
+              <rect
+                x="42"
+                y="20"
+                width="102"
+                height="230"
+                rx="51"
+                className="device-body"
+              />
+              <circle cx="93" cy="76" r="23" className="device-camera" />
+              <circle cx="93" cy="76" r="9" className="device-lens" />
+              <path
+                d="M80 128h26M84 136h18M88 144h10"
+                className="device-detail"
+              />
+              <circle cx="93" cy="195" r="27" className="device-button" />
+              <circle cx="93" cy="195" r="19" className="device-detail" />
+              <path d="M70 263h46" className="device-detail" />
+            </svg>
+            <span>Smart Doorbell</span>
+          </div>
+          <div className="map-data">
+            <Database size={27} strokeWidth={1.3} aria-hidden="true" />
+            <strong>Device events</strong>
+            <span>PostgreSQL</span>
+          </div>
+          <div className="map-branches">
+            <div className="map-branch">
+              <SlidersHorizontal
+                size={21}
+                strokeWidth={1.4}
+                aria-hidden="true"
+              />
+              <div>
+                <strong>Explore event history</strong>
+                <p>Date, time & event-type filters</p>
+                <span>React · Next.js</span>
+              </div>
+            </div>
+            <div className="map-branch">
+              <Mail size={21} strokeWidth={1.4} aria-hidden="true" />
+              <div>
+                <strong>Notify device owners</strong>
+                <p>Owner lookup → email delivery</p>
+                <span>Cloudflare Worker · Clerk · Resend</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+        <div className="project-detail-grid">
+          <div className="project-context">
+            <h4 className="small-label">The project</h4>
+            <p>{doorbell.description}</p>
+            <p className="project-stack">{doorbell.technologies.join(" / ")}</p>
+          </div>
+          <div className="project-contribution">
             <h4 className="small-label">My contribution</h4>
             <ul className="contribution-list">
-              {project.contributions.map((item) => (
+              {doorbell.contributions.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <p className="project-stack">{project.technologies.join(" · ")}</p>
-            <div className="project-source-links">
-              {project.links.map((link) => (
-                <a
-                  className="text-link"
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                  <ArrowUpRight size={15} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <SourceLinks links={doorbell.links} />
           </div>
-          <figure className="implementation-figure">
-            <figcaption>
-              <span className="small-label">Implementation overview</span>
-              <span className="figure-index">0{index + 1}</span>
-            </figcaption>
-            {project.id === "doorbell" ? (
-              <>
-                <div className="flow-stage">
-                  <Layout size={21} aria-hidden="true" />
-                  <div>
-                    <strong>Event history</strong>
-                    <span>React interface & filters</span>
-                  </div>
-                </div>
-                <div className="flow-connector">
-                  <ArrowDown size={16} aria-hidden="true" />
-                  <span>Server-side query</span>
-                </div>
-                <div className="flow-stage">
-                  <Database size={21} aria-hidden="true" />
-                  <div>
-                    <strong>PostgreSQL</strong>
-                    <span>Devices, owners & events</span>
-                  </div>
-                </div>
-                <div className="flow-connector">
-                  <ArrowDown size={16} aria-hidden="true" />
-                  <span>Pending-event processing</span>
-                </div>
-                <div className="flow-stage">
-                  <Bell size={21} aria-hidden="true" />
-                  <div>
-                    <strong>Notification worker</strong>
-                    <span>Clerk lookup → Resend email</span>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="portfolio-outline">
-                  <div className="outline-nav">
-                    <span className="outline-brand">Hayeen.</span>
-                    <span>Work / About / Contact</span>
-                  </div>
-                  <div className="outline-heading">
-                    A place for
-                    <br />
-                    the work.
-                  </div>
-                  <div className="outline-lines">
-                    <span />
-                    <span />
-                  </div>
-                  <div className="outline-projects">
-                    <Code2 size={25} aria-hidden="true" />
-                    <ArrowRight size={22} aria-hidden="true" />
-                    <Layout size={25} aria-hidden="true" />
-                  </div>
-                </div>
-                <p className="figure-note">
-                  Project data → React components → responsive pages
-                </p>
-              </>
-            )}
-            {project.id === "doorbell" && (
-              <p className="figure-note">
-                Web application + companion notification worker
-              </p>
-            )}
-          </figure>
-        </article>
-      ))}
+        </div>
+      </article>
+      <article className="portfolio-entry" aria-labelledby="project-portfolio">
+        <div className="portfolio-monogram" aria-hidden="true">
+          H<span>.</span>
+        </div>
+        <div className="portfolio-copy">
+          <p className="project-kicker">Design & development</p>
+          <h3 id="project-portfolio">{portfolio.title}</h3>
+          <p>{portfolio.description}</p>
+          <p className="portfolio-implementation">
+            {portfolio.contributions[0]} {portfolio.contributions[1]}
+          </p>
+        </div>
+        <div className="portfolio-source">
+          <SourceLinks links={portfolio.links} />
+          <p className="project-stack">{portfolio.technologies.join(" / ")}</p>
+        </div>
+      </article>
     </section>
   );
 }
