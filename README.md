@@ -8,7 +8,7 @@ A personal website for Hayeen (Hanyu Xue), a Perth-based UWA Master of Informati
 
 The site presents my education, web projects and current Procurement Coordinator experience. It is built with Next.js, React and Tailwind CSS.
 
-- Reusable project cards render entries from [lib/data.js](lib/data.js).
+- Project content and source links come from [lib/data.js](lib/data.js).
 - The current contact section offers direct email, copying the email address and a GitHub link. It does not submit a contact form.
 - A previous contact-form action with Zod validation and a Resend integration remains in [app/actions/send.js](app/actions/send.js) as historical project work; it is not called by the current contact section.
 - The downloadable CV is served from `public/resume.pdf` and should match the maintained software CV.
@@ -32,7 +32,7 @@ The current public pages and direct-email contact section do not require email-s
 
 ## Interface
 
-Project-first single-page layout with the original Acorn and Inter fonts, warm-brown light theme and navy/sky-blue dark theme. The header contains Work, About, Contact, CV and a theme switch; the mobile menu supports Escape and closes after navigation. Theme preference follows the system until explicitly changed. Contact links open the visitor’s email app; copying the address shows an inline result. Reduced-motion preferences are respected, and content is rendered without scroll-reveal dependencies.
+An editorial single-page layout gives Smart Doorbell a full-width system illustration and contribution breakdown, followed by a compact portfolio entry and an asymmetric background/education area. It retains the original Acorn and Inter fonts, warm-brown light theme and navy/sky-blue dark theme. The header contains Work, About, Contact, CV and a theme switch; the mobile menu supports Escape and closes after navigation. Theme preference follows the system until explicitly changed. Contact links open the visitor’s email app; copying the address shows an inline result. Reduced-motion preferences are respected, and content is rendered without scroll-reveal dependencies.
 
 ## Content maintenance
 
