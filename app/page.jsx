@@ -7,24 +7,15 @@ import Skills from "@/components/sections/skill/Skills";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gradient-to-b dark:from-[#0F172A] dark:to-[#1E293B] text-gray-900 dark:text-white">
-      {/* Hero Section */}
+    <main id="main-content">
       <Hero />
-
-      {/* About Section */}
-      <About />
-
-      {/* Education Section */}
-      <Education />
-
-      {/* Skills Section */}
-      <Skills />
-
-      {/* Projects Section */}
       <Projects />
-
-      {/* Contact Section */}
+      <About />
+      <div className="site-shell background-grid">
+        <Skills />
+        <Education />
+      </div>
       <Contact />
-    </div>
+    </main>
   );
 }
