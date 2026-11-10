@@ -61,7 +61,7 @@ export default function EducationItem({ item, index }) {
             <span>{item.location}</span>
           </div>
 
-          <div className="border-t border-gray-100 dark:border-gray-700/50 pt-3 mt-3 relative">
+          {item.focusAreas.length > 0 && <div className="border-t border-gray-100 dark:border-gray-700/50 pt-3 mt-3 relative">
             <svg
               className="absolute -top-0.5 left-0 w-full h-2 text-gray-200 dark:text-indigo-700/40 opacity-50 dark:opacity-80"
               viewBox="0 0 100 10"
@@ -79,7 +79,7 @@ export default function EducationItem({ item, index }) {
               Focus Areas:
             </h4>
             <FocusAreasList focusAreas={item.focusAreas} />
-          </div>
+          </div>}
         </div>
       </motion.div>
     </motion.div>
