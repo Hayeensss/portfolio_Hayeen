@@ -21,7 +21,7 @@ function SourceLinks({ links }) {
 }
 
 export default function Projects() {
-  const [doorbell, portfolio] = projectsData;
+  const [doorbell, soil, portfolio] = projectsData;
   return (
     <section
       id="projects"
@@ -32,21 +32,18 @@ export default function Projects() {
         Selected work
       </h2>
       <article className="featured-project" aria-labelledby="project-doorbell">
-        <header className="project-heading">
-          <div>
-            <p className="project-kicker">
-              Web application & notification service
-            </p>
-            <h3 id="project-doorbell">
-              Smart Doorbell<span className="accent-text">.</span>
-            </h3>
+        <div className="project-story">
+          <h3 id="project-doorbell" className="work-title">
+            {doorbell.title}
+            <span className="accent-text">.</span>
+          </h3>
+          <p className="project-description">{doorbell.description}</p>
+          <div className="project-contribution">
+            <h4>What I built</h4>
+            <p>{doorbell.contribution}</p>
           </div>
-          <p className="project-deck">
-            Find the event that matters.
-            <br />
-            Reach the owner it belongs to.
-          </p>
-        </header>
+          <SourceLinks links={doorbell.links} />
+        </div>
         <figure className="doorbell-map">
           <figcaption className="map-caption">
             How the system connects
@@ -75,7 +72,6 @@ export default function Projects() {
               <circle cx="93" cy="195" r="19" className="device-detail" />
               <path d="M70 263h46" className="device-detail" />
             </svg>
-            <span>Smart Doorbell</span>
           </div>
           <div className="map-data">
             <Database size={27} strokeWidth={1.3} aria-hidden="true" />
@@ -90,7 +86,7 @@ export default function Projects() {
                 aria-hidden="true"
               />
               <div>
-                <strong>Explore event history</strong>
+                <strong>Event history</strong>
                 <p>Date, time & event-type filters</p>
                 <span>React · Next.js</span>
               </div>
@@ -98,46 +94,36 @@ export default function Projects() {
             <div className="map-branch">
               <Mail size={21} strokeWidth={1.4} aria-hidden="true" />
               <div>
-                <strong>Notify device owners</strong>
+                <strong>Owner notifications</strong>
                 <p>Owner lookup → email delivery</p>
                 <span>Cloudflare Worker · Clerk · Resend</span>
               </div>
             </div>
           </div>
         </figure>
-        <div className="project-detail-grid">
-          <div className="project-context">
-            <h4 className="small-label">The project</h4>
-            <p>{doorbell.description}</p>
-            <p className="project-stack">{doorbell.technologies.join(" / ")}</p>
-          </div>
+      </article>
+      <article className="soil-entry" aria-labelledby="project-soil">
+        <header>
+          <p className="project-kicker">UWA team project · Python</p>
+          <h3 id="project-soil" className="work-title">
+            {soil.title}
+          </h3>
+        </header>
+        <div className="project-story">
+          <p className="project-description">{soil.description}</p>
           <div className="project-contribution">
-            <h4 className="small-label">My contribution</h4>
-            <ul className="contribution-list">
-              {doorbell.contributions.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <SourceLinks links={doorbell.links} />
+            <h4>My part</h4>
+            <p>{soil.contribution}</p>
           </div>
+          <SourceLinks links={soil.links} />
         </div>
       </article>
       <article className="portfolio-entry" aria-labelledby="project-portfolio">
-        <div className="portfolio-monogram" aria-hidden="true">
-          H<span>.</span>
-        </div>
-        <div className="portfolio-copy">
-          <p className="project-kicker">Design & development</p>
-          <h3 id="project-portfolio">{portfolio.title}</h3>
-          <p>{portfolio.description}</p>
-          <p className="portfolio-implementation">
-            {portfolio.contributions[0]} {portfolio.contributions[1]}
-          </p>
-        </div>
-        <div className="portfolio-source">
-          <SourceLinks links={portfolio.links} />
-          <p className="project-stack">{portfolio.technologies.join(" / ")}</p>
-        </div>
+        <h3 id="project-portfolio" className="work-title">
+          {portfolio.title}
+        </h3>
+        <p>{portfolio.description}</p>
+        <SourceLinks links={portfolio.links} />
       </article>
     </section>
   );
