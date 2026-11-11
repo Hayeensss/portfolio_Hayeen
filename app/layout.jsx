@@ -21,7 +21,7 @@ export const metadata = {
   alternates: { canonical: "/" },
   title: "Hayeen (Hanyu Xue) - Junior Software Developer",
   description:
-    "Perth-based UWA IT graduate seeking junior software development roles. Explore Smart Doorbell and Portfolio projects using React, Next.js and PostgreSQL.",
+    "Software portfolio of Hayeen (Hanyu Xue), featuring the Smart Doorbell web app, Soil Condition Mapping and the design of this website.",
   authors: [{ name: "Hanyu Xue", url: "https://github.com/Hayeensss" }],
 };
 
